@@ -1,0 +1,24 @@
+连接上你的服务器，修改你的ssh的配置
+这个是对服务端做的配置
+
+#vim /etc/ssh/sshd_config
+1
+找到下面这个两行
+/ClientAliveInterval 快速定位
+
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+1
+2
+去掉注释，修改成下面的数字
+
+ClientAliveInterval 30
+ClientAliveCountMax 86400
+
+这两行的意思分别是
+
+客户端每隔多少秒向服务发送一个心跳数据
+客户端多少秒没有相应，服务器自动断掉连接
+最后重启sshd服务
+
+#service sshd restart
